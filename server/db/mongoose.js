@@ -12,6 +12,5 @@ mongoose.connect(url, {
 });
 
 connection.once("open", () => {
-  console.log("Connected Database Successfully");
+  console.log("*** Connected to MongoAtlas Database Successfully");
 });
-
