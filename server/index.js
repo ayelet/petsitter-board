@@ -1,13 +1,5 @@
-const express = require("express");
-const app = express();
-const port = process.env.PORT || 8000;
-const cors = require("cors");
-require("./DB/mongoose");
-// const newRoute = require("./routes/newRoutes.routes");
-
-app.use(express.json());
-app.use(cors());
-// app.use(newRoute);
+const app = require("./app");
+const port = process.env || 8000;
 
 app.listen(port, () => {
   console.log(`server run at http://localhost:${port}`);
