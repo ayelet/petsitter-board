@@ -7,13 +7,22 @@ const url = process.env.MONGODB_DEV || "test";
 const connection = mongoose.connection;
 
 // console.log(process.env.MONGODB);
-mongoose.connect(url, {
-  // useMongoClient:true ,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+mongoose.connect(
+  url,
+  {
+    // useMongoClient:true ,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  },
+  (error, client) => {
+    if (error) {
+      return console.log("Unable to connect to databse");
+    }
+    console.log("Connected")
+  }
+);
 
 connection
   .once("open", () => {
