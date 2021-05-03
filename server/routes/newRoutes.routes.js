@@ -2,11 +2,11 @@ const express = require("express");
 const route = new express.Router();
 // const newController = require("../controllers/newPost.controller");
 
-route.post("/api/newPost", async (req, res) => {
+route.get("/api/", async (req, res) => {
   //   console.log(req.body);
   // await newController.createNewPost(req, res);
   //   res.send(req.body);
-  res.send(2000).send("hola");
+  res.status(200).send("hola");
 });
 
 module.exports = route;

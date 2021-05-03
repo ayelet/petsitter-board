@@ -1,12 +1,18 @@
-const app = require("./app");
 const port = process.env.PORT || 8000;
 
-app.listen(port, () => {
-  console.log(`server run at http://localhost:${port}`);
-});
+const express = require("express");
+const path = require("path");
+// const port = process.env || 8000;
+const cors = require("cors");
+require("./db/mongoose");
+const newRoute = require("./routes/newRoutes.routes"); //TODO-change to proper routes later
 
-console.log(__dirname);
-// set static folder
+const app = express();
+app.use(express.json());
+app.use(cors());
+app.use(newRoute);
+
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 
@@ -16,3 +22,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
+
+
+app.listen(port, () => {
+  console.log(`### server run at ${port}`);
+});
