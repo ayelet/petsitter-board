@@ -5,7 +5,7 @@ app.listen(port, () => {
   console.log(`server run at http://localhost:${port}`);
 });
 
-
+console.log(__dirname);
 // set static folder
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
@@ -14,3 +14,5 @@ if (process.env.NODE_ENV === "production") {
     res.sendfile(path.resolve(__dirname, "../client", "build", "index.html"));
   });
 }
+
+
