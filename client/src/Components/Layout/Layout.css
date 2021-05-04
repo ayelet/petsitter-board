@@ -1,0 +1,55 @@
+@font-face {
+  font-family: KiriFont;
+  src: url("../../assets//fonts/KiriFont.ttf");
+}
+
+html {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.bg-theme {
+  background-color: #6dcce8;
+}
+
+.cart-icon,
+.login-icon {
+  font-size: 2rem;
+}
+
+.hero {
+  min-height: 80vh;
+  width: 100%;
+  background: url("../../assets/img/welcome.jpg") no-repeat center center/cover;
+  font-family: KiriFont;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.page {
+  height: 99vh;
+  width: 97vw;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  order: 1;
+  flex: 1;
+}
+
+.content {
+  order: 2;
+  height: 77%;
+}
+
+footer {
+  order: 3;
+  flex: 1;
+}

@@ -1,12 +1,20 @@
 import "./App.css";
+// import Signup from "./Components/Pages/SignUp/SignUp";
+// import welcome from "./assets/img/welcome.jpg";
+// import NavigationMenu from "./Components/NavigationMenu/NavigationMenu";
+import { BrowserRouter } from "react-router-dom";
+import IndexPage from "./Components/Pages/IndexPage/IndexPage";
+import Layout from "./Components/Layout/Layout";
+import { useState } from "react";
 
-import welcome from "./assets/img/welcome.jpg";
 function App() {
+  const [token, setToken] = useState();
   return (
-    <div className="App">
-      <h1>Coming Soon</h1>
-      <img src={welcome} alt="welcome"></img>
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <IndexPage />{" "}
+      </Layout>
+    </BrowserRouter>
   );
 }
 

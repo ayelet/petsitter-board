@@ -1,0 +1,139 @@
+/* Add a black background color to the top navigation */
+:root {
+  --background-color: #6dcce8;
+  --text-color: #f2f2f2;
+}
+
+/* .bg-theme {
+  background-color: var(--background-color);
+} */
+
+.badge-notify {
+  background: #4cd964;
+  position: relative;
+  top: -12px;
+  left: -16px;
+}
+
+.topnav {
+  background-color: var(--background-color);
+  overflow: hidden;
+  padding: 10px 40px 10px 70px;
+  border: 1px solid turquoise;
+  border-left: noe;
+  border-right: none;
+}
+
+.topnav ul {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.topnav ul li.logo {
+  flex: 1;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.topnav ul div.items {
+  padding: 0 25px;
+  display: inline-flex;
+}
+
+.topnav ul div.items a {
+  text-decoration: none;
+  font-size: 1.2 rem;
+  padding: 0 12px;
+}
+
+.topnav ul div.items a:hover {
+  color: turquoise;
+}
+
+.topnav ul .search-icon {
+  height: 40px;
+  width: 240px;
+  display: flex;
+  background-color: var(--text-color);
+  border-radius: 5px;
+}
+
+.topnav ul .search-icon input {
+  height: 100%;
+  width: 200px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  padding: 10px 0;
+  padding-left: 10px;
+  color: #000;
+  font-size: 1rem;
+  outline: none;
+}
+
+.topnav ul .search-icon .icon {
+  height: 100px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  /* background: #000; */
+  border: 1px solid #cccccc;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.topnav ul .search-icon .icon:hover {
+  background: lightgray;
+}
+
+.topnav ul .search-icon .icon span {
+  color: var(--background-color);
+  font-size: 1.2rem;
+}
+/* ///////////////////////////////// */
+@media screen and (max-width: 1024px) {
+  .topnav {
+    padding: 10px 40px 10px 0;
+  }
+
+  .topnav ul li.logo {
+    display: none;
+  }
+
+  .topnav ul div.item {
+    flex: 4;
+  }
+
+  .topnav .menu-icon {
+    display: block;
+  }
+
+  .topnav .search-icon,
+  .topnav .menu-icon span {
+    display: block;
+  }
+}
+/* /////////////////////////////////// */
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: var(--text-color);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: var(--background-color);
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: var(--background-color);
+  color: white;
+}
