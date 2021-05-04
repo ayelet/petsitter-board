@@ -1,7 +1,7 @@
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./NavigationMenu.css";
 // import "../Layout/Layout.css";
-import { FaUserCircle, FaSearch } from "react-icons/fa";
+import { FaUserCircle, FaSearch, FaTh } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
@@ -62,6 +62,11 @@ function NavigationMenu(props) {
                 </Button>
               </InputGroup.Append>
             </InputGroup>
+          </li>
+          <li className="nav-item">
+            <Link to="/Favorites" className="nav-link text-white">
+              <FaTh className="login-icon ml-2" />
+            </Link>
           </li>
           <li className="nav-item">
             <Link to="/Login" className="nav-link text-white">

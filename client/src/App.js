@@ -7,8 +7,9 @@ import IndexPage from "./Components/Pages/IndexPage/IndexPage";
 import Layout from "./Components/Layout/Layout";
 // import { useState } from "react";
 
+
 function App() {
-  // const [token, setToken] = useState();
+
   return (
     <BrowserRouter>
       <Layout>
