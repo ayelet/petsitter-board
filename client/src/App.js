@@ -5,10 +5,10 @@ import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import IndexPage from "./Components/Pages/IndexPage/IndexPage";
 import Layout from "./Components/Layout/Layout";
-import { useState } from "react";
+// import { useState } from "react";
 
 function App() {
-  const [token, setToken] = useState();
+  // const [token, setToken] = useState();
   return (
     <BrowserRouter>
       <Layout>

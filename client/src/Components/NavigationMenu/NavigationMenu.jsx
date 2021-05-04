@@ -1,7 +1,7 @@
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./NavigationMenu.css";
 // import "../Layout/Layout.css";
-import { FaShoppingCart, FaUserCircle, FaSearch } from "react-icons/fa";
+import { FaUserCircle, FaSearch } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
@@ -13,7 +13,7 @@ function NavigationMenu(props) {
   const [navbarClassName, setNavbarClassName] = useState(
     "collapse navbar-collapse"
   );
-  const [cartQty] = useState(props.cartQty);
+  // const [cartQty] = useState(props.cartQty);
 
   const menuItems = [
     { id: 1, text: "Home", url: "/" },
