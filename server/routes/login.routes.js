@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const usersController = require("../controllers/users.controllers");
-const auth = require("../middleware/auth.middleware");
+// const usersController = require("../controllers/users.controllers");
+// const auth = require("../middleware/auth.middleware");
 
 router
 
@@ -10,9 +10,9 @@ router
     "/login",
     //   /*auth, */ x(req, res) => {
     (req, res) => {
-      console.log("GET request to fetch all users");
+      console.log("POST request to login");
       //   usersController.getUsers(res);
-      return res.status(200).send("Login request");
+      return res.status(200).send({ token: "test123" });
     }
   );
 

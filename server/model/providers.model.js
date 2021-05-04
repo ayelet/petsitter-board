@@ -3,65 +3,26 @@ const bcrypt = require("bcryptjs");
 const validator = require("validator");
 // const auth = require("../middleware/auth.middleware");
 const jwt = require("jsonwebtoken");
-const accountModel = require("./accounts.model");
+// const accountModel = require("./accounts.model");
+const userSchema = require("./users.model/userSchema");
 
-const userSchema = mongoose.Schema({
-  user_id: {
-    type: Number,
-    required: true,
-    unique: true,
+// providers=> user Credentials, service type, address,
+const providerSchema = mongoose.Schema({
+  user: userSchema,
+  serviceType: {
+
   },
-  first_name: {
-    type: String,
-    trim: true,
-    required: true,
-    unique: false,
+  address: {
+
   },
-  last_name: {
-    type: String,
-    trim: true,
-    required: true,
-    unique: false,
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-    trim: true,
-    lowercase: true,
-    validate(value) {
-      if (!validator.isEmail(value)) throw new Error("Email is invalid");
-    },
-  },
-  password: {
-    type: String,
-    required: true,
-    unique: false,
-    validate(value) {
-      if (value.length < 4)
-        throw new Error("Password length should be at least 4 characters");
-      if (value.toLowerCase().includes("password")) {
-        throw new Error('Password cannot contain "password"');
-      }
-    },
-  },
-  dateAdded: {
-    type: Date,
-    default: Date.now,
-  },
-  tokens: [
-    {
-      token: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+  reviews: {
+      
+  }
 });
 
 // Generate Auth Token for a specific user
 // methods are for instances of the model
-userSchema.methods.generateAuthToken = async function () {
+providerSchema.methods.generateAuthToken = async function () {
   const user = this;
   const token = jwt.sign({ _id: user._id.toString() }, "thisismysecret");
   user.tokens = user.tokens.concat({ token });
@@ -70,7 +31,7 @@ userSchema.methods.generateAuthToken = async function () {
 };
 
 // Return only public profile of user as response
-userSchema.methods.toJSON = function () {
+providerSchema.methods.toJSON = function () {
   const user = this;
   const userAsObject = user.toObject();
 
@@ -82,9 +43,9 @@ userSchema.methods.toJSON = function () {
 
 // Find user by email and password
 // Statics are static methods of the whole class, not instances
-userSchema.statics.findByCredentials = async (email, password) => {
+providerSchema.statics.findByCredentials = async (email, password) => {
   console.log("find by credentials");
-  const user = await userModel.findOne({ email });
+  const user = await providerModel.findOne({ email });
   if (!user) {
     throw new Error("Unable to login");
   }
@@ -99,7 +60,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
 };
 
 // Hash a plain text password prior to saving
-userSchema.pre("save", async function (next) {
+providerSchema.pre("save", async function (next) {
   const user = this;
   console.log("pre save hashing", this);
   if (user.isModified("password")) {
@@ -111,11 +72,11 @@ userSchema.pre("save", async function (next) {
 });
 
 // Delete accounts whenever a user is removed
-userSchema.pre("remove", async function (next) {
+providerSchema.pre("remove", async function (next) {
   const user = this;
   await accountModel.deleteMany({ user_id: this.user_id });
   next();
 });
-const userModel = mongoose.model("users", userSchema);
-module.exports = {userModel,userSchema};
-// module.exports = mongoose.model("users", userSchema);
+const providerModel = mongoose.model("providers", providerSchema);
+module.exports = providerModel;
+// module.exports = mongoose.model("users", providerSchema);
