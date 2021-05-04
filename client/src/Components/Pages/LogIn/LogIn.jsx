@@ -2,20 +2,33 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import "./LogIn.css";
+import api from "../../../api/api";
 
 Login.propTypes = {
   setToken: PropTypes.func.isRequired,
 };
 
-//TODO  - change to axios
 async function loginUser(credentials) {
-  return fetch("http://localhost:8000/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  }).then((data) => data.json());
+  try {
+    console.log("Login user", credentials);
+    const url = "/login";
+    const { data } = await api.post(url, {
+      body: JSON.stringify(credentials),
+    });
+    console.log("recieved response ", data);
+    return data;
+    // setData(data);
+  } catch (err) {
+    console.log("Login Error:", err);
+  }
+
+  // return fetch("http://localhost:8000/login", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify(credentials),
+  // }).then((data) => data.json());
 }
 
 export default function Login({ setToken }) {
@@ -30,6 +43,7 @@ export default function Login({ setToken }) {
     });
     setToken(token);
   };
+
   return (
     <div className="form-wrapper">
       <div className="login-wrapper">

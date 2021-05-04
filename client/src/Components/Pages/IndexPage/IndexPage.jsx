@@ -8,14 +8,20 @@ import Dashboard from "../Dashboard/Dashboard";
 // import ContactPage from "../Contact/Contact";
 import HomePage from "../HomePage/HomePage";
 import Login from "../LogIn/LogIn";
+import useToken from "../../App/useToken";
 // import ProductDetail from "../Product/ProductDetail";
 // import NutritionCalculaotr from "./NutritionCalculator/NutritionCalculaotr";
 
 export default function IndexPage() {
+  const { token, setToken } = useToken();
   return (
     <div>
       <Route path="/" exact component={HomePage} />
-      <Route path="/Login" exact component={Login} />
+      <Route
+        path="/Login"
+        exact
+        render={(props) => <Login {...props} setToken={setToken} />}
+      />
       <Route path="/Dashboard" exact component={Dashboard} />
 
       {/*   <Route path="/Contact" exact component={ContactPage} />
