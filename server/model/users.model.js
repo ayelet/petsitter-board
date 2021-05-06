@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const validator = require("validator");
 // const auth = require("../middleware/auth.middleware");
 const jwt = require("jsonwebtoken");
-const accountModel = require("./accounts.model");
+// const accountModel = require("./accounts.model");
 
 const userSchema = mongoose.Schema({
   user_id: {
@@ -116,6 +116,6 @@ userSchema.pre("remove", async function (next) {
   await accountModel.deleteMany({ user_id: this.user_id });
   next();
 });
-const userModel = mongoose.model("users", userSchema);
-module.exports = {userModel,userSchema};
+const userModel = mongoose.model("User", userSchema);
+module.exports = { userModel, userSchema };
 // module.exports = mongoose.model("users", userSchema);

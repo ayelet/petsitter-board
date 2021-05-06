@@ -1,5 +1,5 @@
 // const roomModel = require("../db/model");
-const userModel = require("../models/users.model");
+const providerModel = require("../model/providers.model");
 // Helper functions
 const validate = (id) => {
   if (!id || id < 0) return false;
@@ -8,7 +8,7 @@ const validate = (id) => {
 // 1. Get all users
 const getUsers = async (res) => {
   try {
-    const users = await userModel.find({});
+    const users = await providerModel.find({});
     if (!users) return res.status(404).send("No users found");
     return res.status(200).send(users);
   } catch (err) {
@@ -27,7 +27,6 @@ const getUser = async (req, res) => {
     if (!user) return res.status(404).send("user does not exist");
     console.log("2. getting user  ", user_id, user);
     return res.status(200).send({ user: user });
-    // if (!user) return res.status(404).send("No user found");
   } catch (err) {
     console.log(err);
     return res.status(500).send(err);
@@ -54,7 +53,12 @@ const addUser = async (req, res) => {
     dateAdded: req.body.dateAdded,
   });
   try {
-    await user.save();
+    const newUser = await user.save();
+    const provider = new providerModel({
+      user: newUser._id,
+      serviceType: req.body.serviceType,
+      address: req.body.address,
+    });
     const token = user.generateAuthToken();
     return res.status(201).json({ user, token });
   } catch (err) {

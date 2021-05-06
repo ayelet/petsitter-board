@@ -1,5 +1,5 @@
 // const roomModel = require("../db/model");
-const userModel = require("../models/users.model");
+const userModel = require("../model/users.model");
 // Helper functions
 const validate = (id) => {
   if (!id || id < 0) return false;
