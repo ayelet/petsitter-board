@@ -19,6 +19,7 @@ function NavigationMenu(props) {
     { id: 1, text: "Home", url: "/" },
     { id: 2, text: "Pet Sitters", url: "/Providers" },
     { id: 3, text: "About Us", url: "/About" },
+    { id: 5, text: "Register as a Pet Sitter", url: "/Login" },
     { id: 4, text: "Contact", url: "/Contact" },
   ];
 

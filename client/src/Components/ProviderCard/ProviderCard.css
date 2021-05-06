@@ -1,0 +1,6 @@
+.item-container {
+  border: 2px solid --primary-color;
+  box-shadow: 2px 2px 10px black;
+  margin: 20px;
+  min-height: 300px;
+}
