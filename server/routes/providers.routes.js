@@ -13,7 +13,7 @@ router
     // auth,
     (req, res) => {
       console.log("GET request to fetch all providers");
-      providersControllers.getUsers(res);
+      providersControllers.getProviders(res);
     }
   )
   .get("/providers/:id", (req, res) => {
@@ -39,7 +39,7 @@ router
   //   console.log("logout all sessions");
   //   providersControllers.logoutAll(req, res);
   // })
-  .put("/:id", (req, res) => {
+  .put("providers/:id", (req, res) => {
     console.log("Update existing provider", req.params.id);
     providersControllers.updateProvider(req, res);
   })

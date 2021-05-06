@@ -6,11 +6,6 @@ const jwt = require("jsonwebtoken");
 // const accountModel = require("./accounts.model");
 
 const userSchema = mongoose.Schema({
-  user_id: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
   first_name: {
     type: String,
     trim: true,
@@ -116,6 +111,6 @@ userSchema.pre("remove", async function (next) {
   await accountModel.deleteMany({ user_id: this.user_id });
   next();
 });
-const userModel = mongoose.model("User", userSchema);
-module.exports = { userModel, userSchema };
+const userModel = mongoose.model("users", userSchema);
+module.exports = userModel;
 // module.exports = mongoose.model("users", userSchema);

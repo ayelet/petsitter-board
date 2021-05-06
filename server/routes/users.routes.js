@@ -23,7 +23,7 @@ router
     usersController.getUserProfile(req, res);
   })
   .post("users/", (req, res) => {
-    console.log("Add user", req.body);
+    console.log("POST: Add user", req.body);
     usersController.addUser(req, res);
   })
   .post("/login", (req, res) => {

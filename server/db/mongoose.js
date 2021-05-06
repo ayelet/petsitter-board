@@ -3,7 +3,7 @@ require("dotenv").config();
 // dotenv.config({ path: "ENV_FILENAME" });
 const mongoose = require("mongoose");
 
-const url = process.env.MONGODB || "test";
+const url = process.env.MONGODB_DEV || "test";
 const connection = mongoose.connection;
 
 // console.log(process.env.MONGODB);
@@ -20,13 +20,13 @@ mongoose.connect(
     if (error) {
       return console.log("Unable to connect to databse");
     }
-    console.log("Connected");
+    console.log("Connected to models: ", client.models);
   }
 );
 
 connection
   .once("open", () => {
-    console.log("*** Connected to MongoAtlas Database Successfully");
+    console.log("*** Connected to: ", url);
   })
   .on("error", function (error) {
     console.log("Error is: ", error);

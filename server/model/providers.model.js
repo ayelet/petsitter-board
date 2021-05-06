@@ -10,7 +10,15 @@ const userSchema = require("./users.model").Schema;
 // providers=> user Credentials, service type, address,
 const serviceTypes = ["Cat Sitting", "Dog Walking", "House Sitting"];
 const providerSchema = mongoose.Schema({
-  user: { type: Schema.Types.ObjectId, ref: "User" },
+  // user: { type: Schema.Types.ObjectId, ref: "User" },
+  details: {
+    first_name: {},
+    last_name: {},
+    gender: {},
+    email: {},
+    password: {},
+    phone: {},
+  },
 
   serviceType: [
     {
@@ -29,15 +37,17 @@ const providerSchema = mongoose.Schema({
       type: String,
       required: true,
     },
-    state: {
-      type: String,
-      default: "Israel",
-    },
-    zip: {
-      type: Number,
-      required: false,
-    },
   },
+  images: [
+    {
+      imageUrl: {
+        type: String,
+        validate(value) {
+          if (!validator.isURL(value)) throw new Error("Invalid Url");
+        },
+      },
+    },
+  ],
   ratings: [
     {
       score: {
@@ -52,7 +62,10 @@ const providerSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "Customer",
       },
-      date: Date,
+      date: {
+        type: Date,
+        default: Date.now,
+      },
     },
   ],
 });
@@ -117,3 +130,55 @@ providerSchema.pre("remove", async function (next) {
 const providerModel = mongoose.model("Provider", providerSchema);
 module.exports = providerModel;
 // module.exports = mongoose.model("users", providerSchema);
+
+// {
+//   "id": 1,
+//   "details": {
+//     "first_name": "Morrie",
+//     "last_name": "Nolder",
+//     "gender": "Male",
+//     "email": "mnolderh@state.tx.us",
+//     "password": "rakeajyBTO",
+//     "phone": "748-525-1553"
+//   },
+//   "serviceTypes": [
+//     {
+//       "serviceType": "House Sitting"
+//     },
+//     {
+//       "serviceType": "Cat Sitting"
+//     }
+//   ],
+//   "address": {
+//     "street": "677 Manley Place",
+//     "city": "Rehovot"
+//   },
+//   "ratings": [
+//     {
+//       "rater_id": "Agata",
+//       "score": 4,
+//       "date": {"$date":{"$numberLong":159707380300}}
+//     },
+//     {
+//       "rater_id": "Dill",
+//       "score": 4,
+//       "date": {"$date":{"$numberLong":161075349100}}
+//     },
+//     {
+//       "rater_id": "Alon",
+//       "score": 5,
+//       "date": {"$date":{"$numberLong":161214170000}}
+//     }
+//   ],
+//   "images": [
+//     {
+//       "imageUrl": "http://dummyimage.com/231x100.png/5fa2dd/ffffff"
+//     },
+//     {
+//       "imageUrl": "http://dummyimage.com/149x100.png/cc0000/ffffff"
+//     },
+//     {
+//       "imageUrl": "http://dummyimage.com/200x100.png/ff4444/ffffff"
+//     }
+//   ]
+// }

@@ -1,5 +1,6 @@
 // const roomModel = require("../db/model");
 const userModel = require("../model/users.model");
+
 // Helper functions
 const validate = (id) => {
   if (!id || id < 0) return false;
@@ -8,11 +9,14 @@ const validate = (id) => {
 // 1. Get all users
 const getUsers = async (res) => {
   try {
+    console.log(__filename, "Get users", userModel);
     const users = await userModel.find({});
+    // console.log("Users found:", users);
     if (!users) return res.status(404).send("No users found");
     return res.status(200).send(users);
   } catch (err) {
-    return res.status(500).send(err);
+    console.log("Error in getUsers", err);
+    return res.status(500).send({ error: err });
   }
 };
 

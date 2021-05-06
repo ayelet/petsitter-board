@@ -1,16 +1,19 @@
 // const roomModel = require("../db/model");
+const { request } = require("express");
 const providerModel = require("../model/providers.model");
+const userModel = require("../model/users.model");
+const userController = require("./users.controllers");
 // Helper functions
 const validate = (id) => {
   if (!id || id < 0) return false;
   return true;
 };
-// 1. Get all users
-const getUsers = async (res) => {
+// 1. Get all providers
+const getProviders = async (res) => {
   try {
-    const users = await providerModel.find({});
-    if (!users) return res.status(404).send("No users found");
-    return res.status(200).send(users);
+    const providers = await providerModel.find({});
+    if (!providers) return res.status(404).send("No providers found");
+    return res.status(200).send(providers);
   } catch (err) {
     return res.status(500).send(err);
   }
@@ -38,29 +41,28 @@ const getUserProfile = async (req, res) => {
 };
 
 // 3. add a new user
-const addUser = async (req, res) => {
-  console.log(req.body);
-  // const { roomReq } = req.body;
+const addProvider = async (req, res) => {
+  console.log(req.body.user);
+  // const { providerReq } = req.body;
+  // console.log(providerReq.gender);
   const date = Date.now();
-  if (req.body.dateAdded) date = req.body.dateAdded;
-  //   console.log("date Added: ", date);
-  const user = new userModel({
-    user_id: req.body.user_id,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    password: req.body.password,
-    email: req.body.email,
-    dateAdded: req.body.dateAdded,
-  });
   try {
-    const newUser = await user.save();
+    if (req.body.dateAdded) date = req.body.dateAdded;
+    console.log("date Added: ", date);
+    console.log("images: ", req.body.images[0].imageUrl);
     const provider = new providerModel({
-      user: newUser._id,
-      serviceType: req.body.serviceType,
+      // first_name: req.body.first_name,
+      id: req.body.id,
+      details: req.body.details,
       address: req.body.address,
+      ratings: req.body.ratings,
+      serviceTypes: req.body.serviceTypes,
+      images: [...req.body.images],
     });
-    const token = user.generateAuthToken();
-    return res.status(201).json({ user, token });
+    const newProvider = await provider.save();
+
+    // const token = user.generateAuthToken();
+    return res.status(201).json({ newProvider /*, token*/ });
   } catch (err) {
     console.log("error in adding user: ", err);
     return res.status(400).json({ Error: err });
@@ -164,9 +166,9 @@ const deleteAllUsers = async (req, res) => {};
 // });
 
 module.exports = {
-  getUsers,
+  getProviders,
   getUser,
-  addUser,
+  addProvider,
   updateUser,
   deleteUser,
   deleteAllUsers,
