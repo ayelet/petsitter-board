@@ -8,7 +8,7 @@ const HomePage = () => {
       <div>
         <h1>Coming Soon</h1>
 
-        <Link to="/#">
+        <Link to="/Providers">
           <Button variant="info">I'm a pet owner</Button>{" "}
         </Link>
         <Link to="/#">

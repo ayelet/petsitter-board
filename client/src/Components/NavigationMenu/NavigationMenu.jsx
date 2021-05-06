@@ -17,7 +17,7 @@ function NavigationMenu(props) {
 
   const menuItems = [
     { id: 1, text: "Home", url: "/" },
-    { id: 2, text: "Shop", url: "/Products" },
+    { id: 2, text: "Pet Sitters", url: "/Providers" },
     { id: 3, text: "About Us", url: "/About" },
     { id: 4, text: "Contact", url: "/Contact" },
   ];

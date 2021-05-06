@@ -7,7 +7,7 @@ import "./Layout.css";
 export default function Layout({ children }) {
   return (
     <div className="page">
-      <NavigationMenu/>
+      <NavigationMenu />
       <div className="content">{children}</div>
       <Footer />
     </div>
