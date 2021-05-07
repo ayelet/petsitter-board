@@ -19,7 +19,9 @@ const providerSchema = mongoose.Schema({
     password: {},
     phone: {},
   },
-
+  description: {
+    type: String,
+  },
   serviceType: [
     {
       type: String,
@@ -68,6 +70,16 @@ const providerSchema = mongoose.Schema({
       },
     },
   ],
+  availability: {
+    from: {
+      type: Date,
+      default: Date.now,
+    },
+    now: {
+      type: Date,
+      default: Date.now,
+    },
+  },
 });
 
 // // Generate Auth Token for a specific user

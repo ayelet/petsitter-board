@@ -53,6 +53,7 @@ const addProvider = async (req, res) => {
     const provider = new providerModel({
       // first_name: req.body.first_name,
       id: req.body.id,
+      description: req.body.description,
       details: req.body.details,
       address: req.body.address,
       ratings: req.body.ratings,

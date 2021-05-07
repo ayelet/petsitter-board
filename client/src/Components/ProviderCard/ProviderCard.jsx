@@ -18,13 +18,13 @@ import React, { useState, useEffect } from "react";
 
 const ProviderCard = () => {
   const [providers, setProviders] = useState([]);
-  //   const url = "http://localhost:8000/providers";
   const url = "/providers";
+  //   const url = "/providers";
 
   useEffect(() => {
     // effect
     axios.get(url).then(function (response) {
-      console.log(response);
+      console.log("fetching from api: ", response);
       setProviders(response.data);
       console.log(providers);
     });

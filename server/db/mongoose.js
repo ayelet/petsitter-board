@@ -26,7 +26,11 @@ mongoose.connect(
 
 connection
   .once("open", () => {
-    console.log("*** Connected to: ", url);
+    let dbConnection = "";
+    if (url === process.env.MONGODB) {
+      dbConnection = "mongoDb on Atlas (remote)";
+    } else dbConnection = url;
+    console.log("*** Connected to: ", dbConnection);
   })
   .on("error", function (error) {
     console.log("Error is: ", error);

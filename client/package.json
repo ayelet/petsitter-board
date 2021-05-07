@@ -43,5 +43,6 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.12.13"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }
