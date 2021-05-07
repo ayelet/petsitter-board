@@ -18,7 +18,8 @@ import React, { useState, useEffect } from "react";
 
 const ProviderCard = () => {
   const [providers, setProviders] = useState([]);
-  const url = "http://localhost:8000/providers";
+  //   const url = "http://localhost:8000/providers";
+  const url = "/providers";
 
   useEffect(() => {
     // effect
@@ -33,7 +34,7 @@ const ProviderCard = () => {
   }, []);
 
   const renderListItem = (provider) => {
-    console.log("card pf provider: ", provider);
+    console.log("card of provider: ", provider);
     return (
       <div className="item-container">
         <p>{provider.details.first_name}</p>
