@@ -26,11 +26,12 @@ const ProviderCard = () => {
     axios.get(url).then(function (response) {
       console.log("fetching from api: ", response);
       setProviders(response.data);
-      console.log(providers);
+      //   console.log(providers);
     });
     return () => {
       // cleanup
     };
+    //eslint disable
   }, []);
 
   const renderListItem = (provider) => {
