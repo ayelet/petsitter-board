@@ -1,0 +1,17 @@
+.reviews-list {
+  list-style: none;
+  padding-left: 8px;
+}
+
+.reviews-list a:hover {
+  text-decoration: none;
+}
+
+.reviews-filter input {
+  appearance: none;
+  margin-left: 8px;
+}
+
+.reviews-filter label {
+  color: #007bff;
+}
